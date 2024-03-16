@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="img/checkmark.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tasks</title>
+    <script>
+      function addTask(event) {
+        event.preventDefault(); // prevent default form submission
+        tasklist.innerHTML += `
+        <li class="list" onclick="toggleStrike(this)" ondblclick="removeTask(this)">${taskfield.value}</li>
+        `;
+
+        taskfield.value = ``;
+      }
+
+      function toggleStrike(element) {
+        element.classList.toggle("strikethrough");
+      }
+
+      function removeTask(element) {
+        element.remove();
+      }
+    </script>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Lilita One", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        color: whitesmoke;
+        background-color: rgb(37, 37, 37);
+      }
+
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: absolute;
+        background-color: rgb(27, 27, 27); /* Hintergrundfarbe des Containers */
+        top: 0px;
+        right: 0px;
+        left: 0px;
+        font-size: 24px;
+      }
+
+      .link {
+        color: whitesmoke;
+        text-shadow: 5px 5px 7px black;
+        text-decoration: none;
+        right: 32px;
+        margin-right: 32px;
+        word-spacing: 0px;
+      }
+
+      .link1 {
+        color: rgb(209, 52, 52);
+        text-shadow: 5px 5px 7px black;
+        text-decoration: none;
+        right: 32px;
+        margin-right: 32px;
+        word-spacing: 0px;
+      }
+
+      .logo {
+        margin-left: 32px;
+        text-shadow: 5px 5px 7px black;
+      }
+
+      .link:hover {
+        color: rgb(209, 52, 52);
+      }
+
+      .link1:hover {
+        color: rgba(209, 52, 52, 0.747);
+      }
+
+      /* Style for the form */
+      form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1; /* Added z-index to bring the form above other elements */
+      }
+
+      input[type="text"] {
+        box-shadow: 5px 5px 7px black;
+        width: 50vh; /* Adjust the width as needed */
+        padding: 7px;
+        background-color: rgb(32, 32, 32);
+        margin-top: 10px;
+        border-radius: 5px;
+        border: 1px solid rgb(209, 52, 52);
+        box-sizing: border-box;
+        font-size: 16px;
+        color: white;
+        font-family: "Lilita One", sans-serif;
+        outline: 2px solid rgb(209, 52, 52);
+      }
+
+      .button {
+        box-shadow: 5px 5px 7px black;
+        margin-left: 10px;
+        width: 36px;
+        padding: 7px;
+        background-color: rgb(209, 52, 52);
+        color: white;
+        font-family: "Lilita One", sans-serif;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      button:hover {
+        background-color: rgba(209, 52, 52, 0.747);
+      }
+
+      .list {
+        text-shadow: 5px 5px 7px black;
+        display: flex;
+        justify-content: center;
+        font-size: 24px;
+        margin-top: 15px;
+      }
+
+      .list.strikethrough {
+        text-decoration: line-through;
+        text-decoration-thickness: 5px;
+        text-decoration-color: rgb(
+          209,
+          52,
+          52
+        ); /* Set the color of the strikethrough line */
+      }
+
+      .ul {
+        position: absolute;
+        top: 100px; /* Adjusted top position */
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <form onsubmit="addTask(event)">
+      <!-- pass the event parameter -->
+      <div>
+        <input type="text" id="taskfield" />
+        <button type="submit" class="button">+</button>
+        <!-- remove redundant type attribute -->
+      </div>
+    </form>
+    <div class="container">
+      <p class="logo">tinytasks.org</p>
+      <div>
+        <a class="link1" href="#">today</a>
+        <a class="link" href="soon.html">soon</a>
+        <a class="link" href="other.html">other</a>
+      </div>
+    </div>
+    <ul class="ul" id="tasklist"></ul>
+  </body>
+</html>
